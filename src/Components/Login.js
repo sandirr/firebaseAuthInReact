@@ -16,7 +16,6 @@ export default class Login extends Component{
         const {email, password} = this.state
         firebaseAuthentication.signInWithEmailAndPassword(email, password)
         .then(res=>{
-            console.log(res)
             if(res.user.emailVerified){
                 this.props.history.push('/home')
             }else{

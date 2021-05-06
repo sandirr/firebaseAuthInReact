@@ -34,7 +34,7 @@ export default class ForgotPassword extends Component{
                             <Button type="submit" fullWidth variant="contained" color="primary">Kirim Email Reset Password</Button>
                         </form>
                         <p>Belum punya akun? <Link to="/registrasi">Registrasi</Link></p>
-                        <p>Sudah Punya Akun? <Link to="/forgot-password">Login</Link></p>
+                        <p>Sudah Punya Akun? <Link to="/login">Login</Link></p>
                     </Grid>
                 </Grid>
             </Container>
