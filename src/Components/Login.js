@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Button, Container, Grid, TextField } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import { firebaseAuthentication } from '../config/firebase'
+import {firebaseAuthentication, googleProvider} from '../config/firebase'
 
 export default class Login extends Component{
     state = {
@@ -27,6 +27,17 @@ export default class Login extends Component{
             alert(error.message)
         })
     }
+
+    handleLoginWithGoogle = () =>{
+        firebaseAuthentication.signInWithPopup(googleProvider)
+        .then(()=>{
+            this.props.history.push('/home')
+        })
+        .catch(error=>{
+            alert(error.message)
+        })
+    }
+
     render(){
         const {email, password} = this.state
         return(
@@ -39,6 +50,7 @@ export default class Login extends Component{
                             <TextField type="password" fullWidth margin="dense" variant="outlined" size="small" value={password} onChange={this.handleChangeField} name="password" label="Password" required />
                             <Button type="submit" fullWidth variant="contained" color="primary">Login</Button>
                         </form>
+                        <Button onClick={this.handleLoginWithGoogle} variant="outlined" color="inherit" fullWidth style={{marginTop:20}}>Login dengan Google</Button>
                         <p>Belum punya akun? <Link to="/registrasi">Registrasi</Link></p>
                         <p>Lupa password? <Link to="/forgot-password">Reset Password</Link></p>
                     </Grid>
